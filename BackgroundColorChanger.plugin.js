@@ -55,6 +55,7 @@ class BackgroundColorChanger {
     initialize() {
         this.initialized = true;
         BdApi.showToast(this.getName() + " " + this.getVersion() + " has started.");
+        BdApi.alert("BackgroundColorChanger", "Plugin installed!\nBackground color is now set to white.");
     }
 
     // Add custom styles
@@ -76,4 +77,3 @@ class BackgroundColorChanger {
         }
     }
 }
-
