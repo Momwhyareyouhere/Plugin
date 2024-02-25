@@ -21,7 +21,7 @@ class Example {
     // Load/Unload
     load() {
         // Explain what the plugin does when it is loaded
-        console.log(`${this.getName()} ${this.getVersion()} has been loaded. It enhances your Discord experience by [brief description of what it does].`);
+        console.log(`${this.getName()} ${this.getVersion()} has been loaded. It enhances your Discord experience by changing the background color to white.`);
     }
 
     unload() { }
@@ -56,12 +56,18 @@ class Example {
     }
 
     stop() {
+        // Reset the background color to its original state
+        document.body.style.backgroundColor = "";
         PluginUtilities.showToast(this.getName() + " " + this.getVersion() + " has stopped.");
     };
 
     // Initialize
     initialize() {
         this.initialized = true;
+        
+        // Change the background color to white
+        document.body.style.backgroundColor = "white";
+        
         PluginUtilities.showToast(this.getName() + " " + this.getVersion() + " has started.");
     }
 }
