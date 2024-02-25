@@ -19,10 +19,7 @@ class Example {
     }
 
     // Load/Unload
-    load() {
-        // Explain what the plugin does when it is loaded
-        console.log(`${this.getName()} ${this.getVersion()} has been loaded. It enhances your Discord experience by changing the background color to white.`);
-    }
+    load() { }
 
     unload() { }
 
@@ -64,10 +61,10 @@ class Example {
     // Initialize
     initialize() {
         this.initialized = true;
-        
+
         // Change the background color to white
         document.body.style.backgroundColor = "white";
-        
+
         PluginUtilities.showToast(this.getName() + " " + this.getVersion() + " has started.");
     }
 }
