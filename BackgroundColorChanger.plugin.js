@@ -1,31 +1,27 @@
-//META{"name":"BackgroundColorChanger"}*//
+//META{"name":"Example"}*//
 
-class BackgroundColorChanger {
+class Example {
     // Constructor
     constructor() {
         this.initialized = false;
     }
 
     // Meta
-    getName() { return "BackgroundColorChanger"; }
-    getShortName() { return "BGCChanger"; }
-    getDescription() { return "A BetterDiscord plugin to change the background color to white."; }
-    getVersion() { return "1.0.0"; }
-    getAuthor() { return "YourName"; }
+    getName() { return "Example"; }
+    getShortName() { return "Example"; }
+    getDescription() { return "This is an example/template for a BD plugin."; }
+    getVersion() { return "0.1.0"; }
+    getAuthor() { return "Minin"; }
 
-    // Settings Panel
+    // Settings  Panel
     getSettingsPanel() {
         return "<!--Enter Settings Panel Options, just standard HTML-->";
     }
-
+    
     // Load/Unload
-    load() {
-        this.addStyle();
-    }
+    load() { }
 
-    unload() {
-        this.removeStyle();
-    }
+    unload() { }
 
     // Events
 
@@ -40,38 +36,48 @@ class BackgroundColorChanger {
     observer(e) {
         // raw MutationObserver event for each mutation
     };
-
+    
     // Start/Stop
     start() {
-        this.initialize();
-    }
+        var libraryScript = document.getElementById('zeresLibraryScript');
+        if (!libraryScript) {
+            libraryScript = document.createElement("script");
+            libraryScript.setAttribute("type", "text/javascript");
+            libraryScript.setAttribute("src", "https://rauenzi.github.io/BetterDiscordAddons/Plugins/PluginLibrary.js");
+            libraryScript.setAttribute("id", "zeresLibraryScript");
+            document.head.appendChild(libraryScript);
+        }
 
+        if (typeof window.ZeresLibrary !== "undefined") this.initialize();
+        else libraryScript.addEventListener("load", () => { this.initialize(); });
+    }
+       
     stop() {
-        this.removeStyle();
-        BdApi.showToast(this.getName() + " " + this.getVersion() + " has stopped.");
-    }
+        PluginUtilities.showToast(this.getName() + " " + this.getVersion() + " has stopped.");
+        this.removeStyle(); // Remove the added style when stopping the plugin
+    };
 
-    // Initialize
+    //  Initialize
     initialize() {
         this.initialized = true;
-        BdApi.showToast(this.getName() + " " + this.getVersion() + " has started.");
-        BdApi.alert("BackgroundColorChanger", "Plugin installed!\nBackground color is now set to white.");
+        PluginUtilities.showToast(this.getName() + " " + this.getVersion() + " has started.");
+        this.addStyle(); // Add the custom style when initializing the plugin
     }
 
     // Add custom styles
     addStyle() {
-        const styleId = 'background-color-changer-style';
+        const styleId = 'example-plugin-style';
         if (!document.getElementById(styleId)) {
             const style = document.createElement('style');
             style.id = styleId;
-            style.textContent = 'body { background-color: white !important; }';
+            style.textContent = 'body { background-color: lightblue !important; }'; // Change the color as needed
             document.head.appendChild(style);
         }
     }
 
     // Remove custom styles
     removeStyle() {
-        const style = document.getElementById('background-color-changer-style');
+        const style = document.getElementById('example-plugin-style');
         if (style) {
             style.remove();
         }
