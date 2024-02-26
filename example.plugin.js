@@ -1,70 +1,20 @@
-//META{"name":"Example"}*//
+/**
+ * @name ExamplePlugin
+ * @author YourName
+ * @description Describe the basic functions. Maybe a support server link.
+ * @version 0.0.1
+ */
 
-class Example {
-    // Constructor
-    constructor() {
-        this.initialized = false;
-    }
+module.exports = class MyPlugin {
+  constructor(meta) {
+    // Do stuff in here before starting
+  }
 
-    // Meta
-    getName() { return "Example"; }
-    getShortName() { return "Example"; }
-    getDescription() { return "This is an example/template for a BD plugin."; }
-    getVersion() { return "0.1.0"; }
-    getAuthor() { return "Minin"; }
+  start() {
+    // Do stuff when enabled
+  }
 
-    // Settings Panel
-    getSettingsPanel() {
-        return "<!--Enter Settings Panel Options, just standard HTML-->";
-    }
-
-    // Load/Unload
-    load() { }
-
-    unload() { }
-
-    // Events
-
-    onMessage() {
-        // Called when a message is received
-    };
-
-    onSwitch() {
-        // Called when a server or channel is switched
-    };
-
-    observer(e) {
-        // raw MutationObserver event for each mutation
-    };
-
-    // Start/Stop
-    start() {
-        var libraryScript = document.getElementById('zeresLibraryScript');
-        if (!libraryScript) {
-            libraryScript = document.createElement("script");
-            libraryScript.setAttribute("type", "text/javascript");
-            libraryScript.setAttribute("src", "https://rauenzi.github.io/BetterDiscordAddons/Plugins/PluginLibrary.js");
-            libraryScript.setAttribute("id", "zeresLibraryScript");
-            document.head.appendChild(libraryScript);
-        }
-
-        if (typeof window.ZeresLibrary !== "undefined") this.initialize();
-        else libraryScript.addEventListener("load", () => { this.initialize(); });
-    }
-
-    stop() {
-        // Reset the background color to its original state
-        document.body.style.backgroundColor = "";
-        PluginUtilities.showToast(this.getName() + " " + this.getVersion() + " has stopped.");
-    };
-
-    // Initialize
-    initialize() {
-        this.initialized = true;
-
-        // Change the background color to white
-        document.body.style.backgroundColor = "white";
-
-        PluginUtilities.showToast(this.getName() + " " + this.getVersion() + " has started.");
-    }
-}
+  stop() {
+    // Cleanup when disabled
+  }
+};
