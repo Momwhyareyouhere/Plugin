@@ -1,68 +1,49 @@
 /**
- * @name test
- * @author notanymorealive
- * @description test
+ * @name ExamplePlugin
+ * @author YourName
+ * @description Describe the basic functions. Maybe a support server link.
  * @version 0.0.1
  */
 
 module.exports = class MyPlugin {
-  constructor(meta) {
-    // Do setup and initialization here
-    this.meta = meta;
-    this.isEnabled = false;
+  constructor() {
+    // Do stuff in here before starting
+    this.enabled = false;
   }
 
-  /**
-   * Start the plugin.
-   */
   start() {
-    // Check if already enabled
-    if (this.isEnabled) {
-      console.warn('Plugin is already enabled.');
-      return;
-    }
-
-    // Perform actions to start the plugin
-    // ...
-
-    // Update state
-    this.isEnabled = true;
-
-    console.log('Plugin is now enabled.');
-
-    // BDPI Alert
-    this.bdpiAlert('Plugin is now enabled.');
+    // Do stuff when enabled
+    this.enabled = true;
+    this.addChatButton();
   }
 
-  /**
-   * Stop the plugin.
-   */
   stop() {
-    // Check if already disabled
-    if (!this.isEnabled) {
-      console.warn('Plugin is already disabled.');
-      return;
-    }
-
-    // Perform cleanup actions
-    // ...
-
-    // Update state
-    this.isEnabled = false;
-
-    console.log('Plugin is now disabled.');
-
-    // BDPI Alert
-    this.bdpiAlert('Plugin is now disabled.');
+    // Cleanup when disabled
+    this.enabled = false;
+    this.removeChatButton();
   }
 
-  /**
-   * BDPI Alert method.
-   * @param {string} message - The message to be alerted.
-   */
-  bdpiAlert(message) {
-    // Replace this with the actual alert mechanism you want to use
-    // For example, in a browser environment, you might use window.alert(message)
-    console.log(`BDPI Alert: ${message}`);
+  addChatButton() {
+    // Logic to add a button to the chat UI
+    if (this.enabled) {
+      const chatButton = $("<button/>", {
+        text: "My Plugin Button",
+        click: this.handleButtonClick.bind(this),
+      });
+
+      // Assuming you have a chat container element to append the button
+      $(".container-1YxwTf").append(chatButton);
+    }
+  }
+
+  removeChatButton() {
+    // Logic to remove the button from the chat UI
+    $(".container-1YxwTf button:contains('My Plugin Button')").remove();
+  }
+
+  handleButtonClick() {
+    // Logic to handle button click event
+    console.log('Button clicked!');
+    // You can add more functionality here
   }
 };
