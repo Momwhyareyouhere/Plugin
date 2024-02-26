@@ -1,7 +1,7 @@
 /**
- * @name ExamplePlugin
- * @author YourName
- * @description Describe the basic functions. Maybe a support server link.
+ * @name test
+ * @author notanymorealive
+ * @description test
  * @version 0.0.1
  */
 
