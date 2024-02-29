@@ -1,41 +1,20 @@
 /**
- * @name BackgroundColorChanger
+ * @name ExamplePlugin
  * @author YourName
- * @description A BetterDiscord plugin that changes the background color to white.
+ * @description Describe the basic functions. Maybe a support server link.
  * @version 0.0.1
  */
 
-module.exports = class BackgroundColorChanger {
-    start() {
-        // Called when the plugin is activated (including after reloads)
-        this.addButton();
-    }
+module.exports = class MyPlugin {
+  constructor(meta) {
+    // Do stuff in here before starting
+  }
 
-    stop() {
-        // Called when the plugin is deactivated
-        this.removeButton();
-    }
+  start() {
+    // Do stuff when enabled
+  }
 
-    addButton() {
-        const serverList = document.querySelector('.guilds-1SWlCJ');
-        if (!serverList) return;
-
-        const button = document.createElement('button');
-        button.textContent = 'Change Background Color';
-        button.addEventListener('click', this.handleButtonClick.bind(this));
-
-        serverList.appendChild(button);
-    }
-
-    removeButton() {
-        const button = document.querySelector('.guilds-1SWlCJ button:contains("Change Background Color")');
-        if (button) {
-            button.remove();
-        }
-    }
-
-    handleButtonClick() {
-        document.body.style.backgroundColor = 'white';
-        BdApi.alert('Background Color Changed', 'The background color has been changed to white.');
-    }
+  stop() {
+    // Cleanup when disabled
+  }
 };
